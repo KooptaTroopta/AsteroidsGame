@@ -20,7 +20,6 @@ public void draw()
   }
   bob.move();
   bob.show();
-  System.out.println(bob.myXspeed);
   if (keys[0]) {
     bob.accelerate(0.05);
   }
