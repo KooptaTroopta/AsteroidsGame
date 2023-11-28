@@ -14,7 +14,11 @@ public void setup()
 }
 public void draw() 
 {
-  background(0);
+  noStroke();
+  for (int i = 0; i <= 1000; i+= 20) {
+    fill(5+i*87/1000.0, 0+i*19.0/1000.0, 87+i*10.0/1000.0);
+    rect(0,i,1000,20);
+  }
   for (int i = 0; i<200; i++) {
     sky[i].baka();
   }
@@ -50,6 +54,9 @@ public void keyPressed()
   }
   if (key == 'd') {
     keys[3] = true;
+  }
+  if (key == 'e') {
+    bob.hyperspace();
   }
 }
 public void keyReleased()
