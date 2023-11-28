@@ -7,8 +7,8 @@ class Star //note that this class does NOT extend Floater
     myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
   }
   public void baka() {
+    noStroke();
     fill(myColor);
     ellipse(myX,myY,5,5);
   }
 }
-
