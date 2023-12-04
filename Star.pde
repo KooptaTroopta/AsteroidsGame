@@ -27,7 +27,7 @@ class Back
     rect(myX,myY,1000,20);
   }
   public void mov(double s) {
-    myY += 0.7 + s;
+    myY += 0.7 + s*1.7;
     if (myY > 2000) {
       myY=0;
     }
