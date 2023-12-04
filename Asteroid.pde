@@ -35,7 +35,4 @@ class Asteroid extends Floater
     turn(myRot);
     super.move();
   }
-  public void show() {
-    super.show();
-  }
 }
