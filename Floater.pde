@@ -18,14 +18,14 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     //change coordinates of direction of travel    
     myXspeed += ((dAmount) * Math.cos(dRadians));    
     myYspeed += ((dAmount) * Math.sin(dRadians));
-    if (myXspeed > 7)
-    myXspeed = 7;
-    if (myYspeed > 7)
-    myYspeed = 7;
-    if (myXspeed < -7)
-    myXspeed = -7;
-    if (myYspeed < -7)
-    myYspeed = -7;
+    if (myXspeed > 5)
+    myXspeed = 5;
+    if (myYspeed > 5)
+    myYspeed = 5;
+    if (myXspeed < -5)
+    myXspeed = -5;
+    if (myYspeed < -5)
+    myYspeed = -5;
   }   
   public void turn (double degreesOfRotation)   
   {     
