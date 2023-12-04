@@ -2,25 +2,53 @@
 Spaceship bob = new Spaceship();
 boolean[] keys = new boolean[4];
 Star[] sky = new Star[200];
+Back[] rec = new Back[200];
+ArrayList <Asteroid> cob = new ArrayList <Asteroid>();
+boolean crash = false;
 
 public void setup() 
 {
+  frameRate(80);
   size(1000,1000);
   bob.show();
   keys = new boolean[] {false,false,false,false};
   for (int i = 0; i<200; i++) {
     sky[i] = new Star();
   }
+  for (int i = 0; i<100; i++) {
+    rec[i] = new Back(color(5+i*87.0/100.0, 0+i*19.0/100.0, 87+i*10.0/100.0),i*10);
+  }
+  for (int i = 100; i<200; i++) {
+    rec[i] = new Back(color(92-(i-100)*87.0/100.0, 19-(i-100)*19.0/100.0, 97-(i-100)*10.0/100.0),i*10);
+  }
+  for (int i = 0; i<10; i++) {
+    cob.add(new Asteroid());
+  }
 }
 public void draw() 
 {
   noStroke();
-  for (int i = 0; i <= 1000; i+= 20) {
-    fill(5+i*87/1000.0, 0+i*19.0/1000.0, 87+i*10.0/1000.0);
-    rect(0,i,1000,20);
+  for (int i = 0; i < 200; i++) {
+    rec[i].mov(Math.sqrt(bob.myXspeed*bob.myXspeed+bob.myYspeed*bob.myYspeed)/1.5);
+    rec[i].waka();
   }
   for (int i = 0; i<200; i++) {
     sky[i].baka();
+  }
+  for (int i = 0; i<cob.size(); i++) {
+    for (int j = 0; j<cob.get(i).getC(); j++) {
+      for (int k = 0; k<bob.getC(); k++) {
+        double d = dist(cob.get(i).getCX(j),cob.get(i).getCY(j),bob.getCX(k),bob.getCY(k));
+        if (d <= 5)
+        crash = true;
+      }
+    }
+    cob.get(i).move();
+    cob.get(i).show();
+    if (crash) {
+      cob.remove(i);
+    }
+    crash = false;
   }
   bob.move();
   bob.show();
