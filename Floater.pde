@@ -6,7 +6,9 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
   protected int myColor;   
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myXspeed, myYspeed; //holds the speed of travel in the x and y directions   
-  protected double myPointDirection; //holds current direction the ship is pointing in degrees    
+  protected double myPointDirection;
+  protected boolean phil;
+  //holds current direction the ship is pointing in degrees    
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
@@ -57,7 +59,11 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
   }   
   public void show ()  //Draws the floater at the current position  
   {             
-    fill(myColor);   
+    if (phil) {
+    fill(myColor);
+    } else {
+      noFill();
+    }
     stroke(myColor);    
     
     //translate the (x,y) center of the ship to the correct position
@@ -70,8 +76,6 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     rotate(dRadians);
     
     //draw the polygon
-    fill(myColor);
-    stroke(myColor);
     beginShape();
     for (int i = 0; i < corners; i++) {
       vertex(xCorners[i],yCorners[i]);
@@ -81,5 +85,20 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
-  }   
-} 
+  }
+  public int getX() {
+    return (int)myCenterX;
+  }
+  public int getY() {
+   return (int)myCenterY; 
+  }
+  public int getC() {
+    return corners;
+  }
+  public float getCX(int ind) {
+    return xCorners[ind] + (float)myCenterX;
+  }
+  public float getCY(int ind) {
+    return yCorners[ind] + (float)myCenterY;
+  }
+}
