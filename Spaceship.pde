@@ -16,25 +16,26 @@ class Spaceship extends Floater
     rotate(dRadians);
  
     fill(255);
-    stroke(150);
+    stroke(255,200,0);
     beginShape();
     for (int i = 0; i<6; i++) {
       vertex(xCorners[i],yCorners[i]);
     }
     endShape(CLOSE);
+    stroke(255);
     beginShape();
     for (int i = 6; i<14; i++) {
       vertex(xCorners[i],yCorners[i]);
     }
     endShape(CLOSE);
     noStroke();
-    fill(255,255,0);
+    fill(255,200,0);
     beginShape();
     for (int i = 14; i<18; i++) {
       vertex(xCorners[i],yCorners[i]);
     }
     endShape(CLOSE);
-    stroke(150);
+    stroke(255,200,0);
     fill(255);
     beginShape();
     for (int i = 18; i<24; i++) {
