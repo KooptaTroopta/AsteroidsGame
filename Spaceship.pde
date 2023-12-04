@@ -27,12 +27,14 @@ class Spaceship extends Floater
       vertex(xCorners[i],yCorners[i]);
     }
     endShape(CLOSE);
-    fill(255,0,0);
+    noStroke();
+    fill(255,255,0);
     beginShape();
     for (int i = 14; i<18; i++) {
       vertex(xCorners[i],yCorners[i]);
     }
     endShape(CLOSE);
+    stroke(150);
     fill(255);
     beginShape();
     for (int i = 18; i<24; i++) {
