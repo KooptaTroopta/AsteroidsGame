@@ -101,4 +101,13 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
   public float getCY(int ind) {
     return yCorners[ind] + (float)myCenterY;
   }
-}
+  public double getSpeedX() {
+    return myXspeed;
+  }
+  public double getSpeedY() {
+    return myYspeed;
+  }
+  public double getPD() {
+    return myPointDirection;
+  }
+} 
