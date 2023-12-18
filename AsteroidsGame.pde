@@ -6,6 +6,8 @@ Back[] rec = new Back[200];
 ArrayList <Asteroid> cob = new ArrayList <Asteroid>();
 boolean crash = false;
 boolean crush = false;
+boolean end = false;
+int score = 0;
 ArrayList <Bullet> lets = new ArrayList<Bullet>();
 
 public void setup() 
@@ -57,9 +59,11 @@ public void draw()
     cob.get(i).show();
     if (crash) {
       cob.remove(i);
+      end = true;
     }
     if (crush) {
       cob.remove(i);
+      score++;
     }
     crash = false;
     crush = false;
@@ -90,8 +94,12 @@ public void draw()
       i--;
     }
   }
+  if (end == false) {
   bob.move();
   bob.show();
+  } else {
+    frameRate(0);
+  }
 }
 public void keyPressed()
 {
