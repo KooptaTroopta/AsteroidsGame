@@ -1,17 +1,19 @@
 //your variable declarations here
 Spaceship bob = new Spaceship();
-boolean[] keys = new boolean[4];
+boolean[] keys = new boolean[6];
 Star[] sky = new Star[200];
 Back[] rec = new Back[200];
 ArrayList <Asteroid> cob = new ArrayList <Asteroid>();
 boolean crash = false;
+boolean crush = false;
+ArrayList <Bullet> lets = new ArrayList<Bullet>();
 
 public void setup() 
 {
   frameRate(80);
   size(1000,1000);
   bob.show();
-  keys = new boolean[] {false,false,false,false};
+  keys = new boolean[] {false,false,false,false,false,false};
   for (int i = 0; i<200; i++) {
     sky[i] = new Star();
   }
@@ -42,16 +44,26 @@ public void draw()
         if (d <= 5)
         crash = true;
       }
+      for (int l = 0; l<lets.size(); l++) {
+        double di = dist(lets.get(l).getX(),lets.get(l).getY(),cob.get(i).getCX(j),cob.get(i).getCY(j));
+        if (di <= 5) {
+          crush = true;
+          lets.remove(l);
+          l--;
+        }
+      }
     }
     cob.get(i).move();
     cob.get(i).show();
     if (crash) {
       cob.remove(i);
     }
+    if (crush) {
+      cob.remove(i);
+    }
     crash = false;
+    crush = false;
   }
-  bob.move();
-  bob.show();
   if (keys[0]) {
     bob.accelerate(0.05);
   }
@@ -64,10 +76,22 @@ public void draw()
   if (keys[3]) {
     bob.turn(3);
   }
-  if (bob.myPointDirection <= 0)
-  bob.myPointDirection = 360;
-  if (bob.myPointDirection > 360)
-  bob.myPointDirection = 0;
+  if (keys[4]) {
+    lets.add(new Bullet(bob));
+  }
+  if (keys[5]) {
+    cob.add(new Asteroid());
+  }
+  for (int i = 0; i<lets.size(); i++) {
+    lets.get(i).move();
+    lets.get(i).show();
+    if (lets.get(i).getX() > width - 5|| lets.get(i).getY() > height - 5 || lets.get(i).getX() < 5|| lets.get(i).getY() < 5) {
+      lets.remove(i);
+      i--;
+    }
+  }
+  bob.move();
+  bob.show();
 }
 public void keyPressed()
 {
@@ -86,6 +110,12 @@ public void keyPressed()
   if (key == 'e') {
     bob.hyperspace();
   }
+  if (key == ' ') {
+    keys[4] = true;
+  }
+  if (key == 'r') {
+    keys[5] = true;
+  }
 }
 public void keyReleased()
 {
@@ -100,5 +130,11 @@ public void keyReleased()
   }
   if (key == 'd') {
     keys[3] = false;
+  }
+  if (key == ' ') {
+    keys[4] = false;
+  }
+  if (key == 'r') {
+    keys[5] = false;
   }
 }
